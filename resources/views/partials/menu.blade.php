@@ -62,6 +62,14 @@
                 <span class="title">Labo Representés</span>
               </a>
             </li>
+            <li class="nav-item">
+              <a class='sidebar-link' href="{{ url('visiteurs') }}">
+                <span class="icon-holder">
+                  <i class="c-yellow-500 ti-users-alt"></i>
+                </span>
+                <span class="title">Visiteurs</span>
+              </a>
+            </li>
             @endif
 
             @if(Auth()->user()->role == 'pharmacien')

@@ -41,3 +41,5 @@ Route::resource('evaluation', 'EvaluationController');
 Route::resource('renouvellement', 'RenouvellementController');
 
 Route::resource('arrete', 'ArreteController');
+
+Route::resource('visiteurs', 'VisiteurController');

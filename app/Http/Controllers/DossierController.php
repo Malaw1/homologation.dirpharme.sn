@@ -17,7 +17,7 @@ class DossierController extends Controller
      */
     public function index()
     {
-        //
+        return view('dossier.index');
     }
 
     /**
