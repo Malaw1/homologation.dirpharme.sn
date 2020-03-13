@@ -37,10 +37,12 @@
               </a>
             </li>
 
+            <!-- Laboratoire  -->
+            @if(Auth()->user()->role == 'labo')
             <li class="nav-item">
               <a class='sidebar-link' href="{{url('enregistrement')}}">
                 <span class="icon-holder">
-                  <i class="c-blue-500 ti-file"></i>
+                  <i class="c-blue-500 ti-folder"></i>
                 </span>
                 <span class="title">Enregistrement</span>
               </a>
@@ -48,16 +50,32 @@
             <li class="nav-item">
               <a class='sidebar-link' href="{{url('renouvellement')}}">
                 <span class="icon-holder">
-                  <i class="c-yellow-500 ti-pencil"></i>
+                  <i class="c-yellow-500 ti-reload"></i>
                 </span>
                 <span class="title">Renouvellement</span>
               </a>
             </li>
-            @if(Auth()->user()->role != 'labo')
+            @elseif(Auth()->user()->role == 'agence')
+            <li class="nav-item">
+              <a class='sidebar-link' href="{{url('enregistrement')}}">
+                <span class="icon-holder">
+                  <i class="c-blue-500 ti-folder"></i>
+                </span>
+                <span class="title">Enregistrement</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class='sidebar-link' href="{{url('renouvellement')}}">
+                <span class="icon-holder">
+                  <i class="c-yellow-500 ti-reload"></i>
+                </span>
+                <span class="title">Renouvellement</span>
+              </a>
+            </li>
             <li class="nav-item">
               <a class='sidebar-link' href="{{ url('laboratoire') }}">
                 <span class="icon-holder">
-                  <i class="c-deep-purple-500 ti-comment-alt"></i>
+                  <i class="c-deep-purple-500 ti-medall-alt"></i>
                 </span>
                 <span class="title">Labo Representés</span>
               </a>
@@ -65,61 +83,123 @@
             <li class="nav-item">
               <a class='sidebar-link' href="{{ url('visiteurs') }}">
                 <span class="icon-holder">
-                  <i class="c-yellow-500 ti-users-alt"></i>
+                  <i class="c-yellow-500 ti-id-badge"></i>
                 </span>
                 <span class="title">Visiteurs</span>
               </a>
             </li>
-            @endif
-
-            @if(Auth()->user()->role == 'pharmacien')
-
+            @elseif(Auth()->user()->role == 'pharmacien')
+            <li class="nav-item">
+              <a class='sidebar-link' href="{{ url('commission') }}">
+                <span class="icon-holder">
+                  <i class="c-red-500 ti-world"></i>
+                </span>
+                <span class="title">Commission</span>
+              </a>
+            </li>
             <li class="nav-item dropdown">
               <a class="dropdown-toggle" href="javascript:void(0);">
                 <span class="icon-holder">
-                  <i class="c-orange-500 ti-pencil"></i>
+                  <i class="c-blue-500 ti-folder"></i>
                 </span>
-                <span class="title">Recevabilite</span>
+                <span class="title">Enregistrement</span>
                 <span class="arrow">
                   <i class="ti-angle-right"></i>
                 </span>
               </a>
               <ul class="dropdown-menu">
                 <li>
-                  <a class='sidebar-link' href="{{ url('recevabilite') }}">Dossier</a>
+                  <a class='sidebar-link' href="{{ url('enregistrement') }}">Demandes</a>
                 </li>
                 <li>
-                  <a class='sidebar-link' href="{{ url('rc_rapport') }}">Rapports</a>
+                  <a class='sidebar-link' href="{{ url('dossier') }}">Avis Favorables</a>
+                </li>
+                <li>
+                  <a class='sidebar-link' href="#">Avis Rejet</a>
                 </li>
               </ul>
             </li>
             <li class="nav-item dropdown">
               <a class="dropdown-toggle" href="javascript:void(0);">
                 <span class="icon-holder">
-                  <i class="c-blue-500 ti-pencil"></i>
+                  <i class="c-yellow-500 ti-reload"></i>
                 </span>
-                <span class="title">evaluation</span>
+                <span class="title">Renouvellement</span>
                 <span class="arrow">
                   <i class="ti-angle-right"></i>
                 </span>
               </a>
               <ul class="dropdown-menu">
                 <li>
-                  <a class='sidebar-link' href="{{ url('evaluation') }}">Dossier</a>
+                  <a class='sidebar-link' href="{{ url('renouvellement') }}">Demandes</a>
                 </li>
                 <li>
-                  <a class='sidebar-link' href="{{ url('rapports_ev') }}">Rapports</a>
+                  <a class='sidebar-link' href="#">Avis Favorables</a>
+                </li>
+                <li>
+                  <a class='sidebar-link' href="#">Rejets</a>
                 </li>
               </ul>
             </li>
-            <li class="nav-item mT-30 actived">
-              <a class="sidebar-link" href="{{ url('arrete') }}">
+            <li class="nav-item">
+              <a class='sidebar-link' href="#">
                 <span class="icon-holder">
-                  <i class="c-blue-500 ti-file"></i>
+                  <i class="c-red-500 ti-write"></i>
                 </span>
-                <span class="title">Arrete</span>
+                <span class="title">Variation</span>
               </a>
             </li>
+            <li class="nav-item">
+              <a class='sidebar-link' href="#">
+                <span class="icon-holder">
+                  <i class="c-green-500 ti-stamp"></i>
+                </span>
+                <span class="title">Visa</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class='sidebar-link' href="{{ url('laboratoire') }}">
+                <span class="icon-holder">
+                  <i class="c-deep-purple-500 ti-comment-alt"></i>
+                </span>
+                <span class="title">Laboratoires</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class='sidebar-link' href="{{ url('agence') }}">
+                <span class="icon-holder">
+                  <i class="c-deep-purple-500 ti-briefcase"></i>
+                </span>
+                <span class="title">Agences</span>
+              </a>
+            </li>
+            
+              @if(Auth()->user()->poste == 'Responsable DCAM' )
+              <li class="nav-item">
+                <a class='sidebar-link' href="{{ url('visiteurs') }}">
+                  <span class="icon-holder">
+                    <i class="c-deep-green-500 ti-id-badge"></i>
+                  </span>
+                  <span class="title">Visiteurs</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class='sidebar-link' href="{{ url('arretes') }}">
+                  <span class="icon-holder">
+                    <i class="c-deep-green-500 ti-receipt"></i>
+                  </span>
+                  <span class="title">Arretes</span>
+                </a>
+              </li>
+              @endif
+              <li class="nav-item">
+                <a class='sidebar-link' href="#">
+                  <span class="icon-holder">
+                    <i class="c-deep-green-500 ti-server"></i>
+                  </span>
+                  <span class="title">Base de donnees</span>
+                </a>
+              </li>
             @endif
 
 

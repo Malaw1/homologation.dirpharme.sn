@@ -40,9 +40,9 @@
                     @endif
                     <td>
                         <a href="{{ url('/enregistrement/' . $demande->id) }}" class="btn btn-action btn-secondary">Detail</a>
-                        @if(Auth()->check() && Auth()->user()->role != 'pharmacien' && $demande->status == 'Acceptée')
-                            <button class="item" disabled data-toggle="tooltip" data-placement="top" title="Suivre">
-                                <i class=""><a href="{{ url('/dossier/create?id=' . $demande->id) }}">Depot</a></i>
+                        @if(Auth()->check() && Auth()->user()->role != 'pharmacien')
+                            <button class="item btn btn-" disabled data-toggle="tooltip" data-placement="top" title="Suivre">
+                                <i class="c-red-500 ti-upload"><a href="{{ url('/dossier/create?id=' . $demande->id) }}"> Deposer les dossiers</a></i>
                             </button>
                         @endif
                     </td>

@@ -6,34 +6,34 @@
               <div class="row">
                 <div class="col-md-12">
                   <div class="bgc-white bd bdrs-3 p-20 mB-20">
-                    <h4 class="c-grey-900 mB-20">Liste total des Laboratoires</h4>
+                    <h4 class="c-grey-900 mB-20">Liste des Agences de Promotion</h4>
                     <table id="dataTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
                         <thead>
                           <tr>
-                            <th>Laboratoire</th>
+                            <th>Agence</th>
+                            <th>N° Agrement</th>
                             <th>Adresse</th>
                             <th>Telephone</th>
                             <th>Email</th>
-                            <th>Agence Represntante</th>
                           </tr>
                         </thead>
                         <tfoot>
                           <tr>
-                            <th>Laboratoire</th>
+                            <th>Agence</th>
+                            <th>N° Agrement</th>
                             <th>Adresse</th>
                             <th>Telephone</th>
                             <th>Email</th>
-                            <th>Agence Representante</th>
                           </tr>
                         </tfoot>
                         <tbody>
-                    @foreach($labo as $labo)
+                    @foreach($agence as $agence)
                         <tr>
-                            <td>{{ $labo->name }}</td>
-                            <td>{{ $labo->adresse }}</td>
-                            <td>{{ $labo->telephone }}</td>
-                            <td>{{ $labo->email }}</td>
-                            <td>{{ $labo->agence }}</td>
+                            <td>{{ $agence->name }}</td>
+                            <td>N/A</td>
+                            <td>{{ $agence->adresse }}</td>
+                            <td>{{ $agence->telephone }}</td>
+                            <td>{{ $agence->email }}</td>
                         </tr>
                         @endforeach
                     </tbody>

@@ -14,8 +14,19 @@ class LaboratoireController extends Controller
      */
     public function index()
     {
-        $labo = Laboratoire::where('user_id', Auth()->user()->id )->get();
-        return view ('laboratoire.index', ['labo' => $labo]);
+
+        if(Auth()->user()->role == 'pharmacien' ){
+            $labo = Laboratoire::join('users', 'users.id', '=', 'laboratoires.user_id')
+            ->select('users.name as agence', 'laboratoires.name', 'laboratoires.adresse', 'laboratoires.telephone', 'laboratoires.email')
+            ->get();
+            // dd($labo);
+            return view ('laboratoire.index', ['labo' => $labo]);
+
+        }
+        else{
+            $labo = Laboratoire::where('user_id', Auth()->user()->id )->get();
+            return view ('laboratoire.index', ['labo' => $labo]);
+        }
     }
 
     /**

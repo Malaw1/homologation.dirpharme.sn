@@ -7,6 +7,7 @@ use App\Enregistrement;
 use Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class DossierController extends Controller
 {
@@ -17,7 +18,14 @@ class DossierController extends Controller
      */
     public function index()
     {
-        return view('dossier.index');
+        $dossier = DB::table('dossiers')
+                ->join('enregistrements', 'dossiers.enreg_id', '=', 'enregistrements.id')
+                ->join('produits', 'produits.enreg_id', '=', 'dossiers.enreg_id')
+                ->select('dossiers.enreg_id', 'numero', 'nom_medicament',DB::raw('count(*) as total'))
+                ->groupBy('enreg_id', 'nom_medicament')
+                ->get();
+
+        return view('dossier.index', ['dossier' => $dossier]);
     }
 
     /**

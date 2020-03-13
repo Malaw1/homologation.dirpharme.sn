@@ -172,7 +172,7 @@
 
                 <input type="hidden" value="{{Auth()->user()->id}}" name="user_id">
 
-                <!-- <button type="submit" class="btn btn-primary btn-lg">Enregistrer</button> -->
+                <button type="submit" class="btn btn-primary btn-lg">Enregistrer</button>
             </form>
         </div>
     </div>

@@ -80,6 +80,32 @@
                         </button>
                     </div>
                 </fieldset>
+                <br>
+                <fieldset>
+                    <legend>Experience Professionnelle</legend>
+                    <div class="form-row experience">
+                        <div class="col">
+                            <label for="">Structure</label>
+                            <input type="text" class="form-control" required placeholder="Entreprise" name="structure[]">
+                        </div>
+                        <div class="col">
+                            <label for="">Periode</label>
+                            <input type="text" class="form-control" required placeholder="jan. 2019 - Mars 2019" name="periode[]">
+                        </div>
+                        <div class="col">
+                            <label for="">Description</label>
+                            <textarea class="form-control" name="description" id="inputCity"></textarea>
+                        </div>
+                        <br />
+
+                        <button type="button" class="fcbtn btn btn-success" id='add'>
+                            <i class="">+</i>
+                        </button>
+                        <button type="button" class="fcbtn btn btn-danger" id='remove'>
+                                <i class="">x</i>
+                        </button>
+                    </div>
+                </fieldset>
 
                 <fieldset>
                     <legend>Photo</legend>

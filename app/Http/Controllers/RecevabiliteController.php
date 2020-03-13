@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Recevabilite;
 use App\Enregistrement;
+use App\User;
 use Illuminate\Http\Request;
 
 class RecevabiliteController extends Controller
@@ -15,11 +16,20 @@ class RecevabiliteController extends Controller
      */
     public function index()
     {
+        if(Auth()->user()->poste == 'Responsable DCAM'){
         $receve = Enregistrement::join('produits', 'produits.enreg_id', '=', 'enregistrements.id')
+            ->join('recevabilites', 'recevabilites.enreg_id', '=', 'enregistrements.id')
+            ->join('users', 'recevabilites.user_id', '=', 'users.id')
+            ->get();
+        // dd($receve);
+        return view('recevabilite.index', ['receve' => $receve]);
+        }else{
+            $receve = Enregistrement::join('produits', 'produits.enreg_id', '=', 'enregistrements.id')
             ->join('recevabilites', 'recevabilites.enreg_id', '=', 'enregistrements.id')
             ->where('recevabilites.user_id', Auth()->user()->id )->get();
         // dd($receve);
         return view('recevabilite.index', ['receve' => $receve]);
+        }
     }
 
     /**

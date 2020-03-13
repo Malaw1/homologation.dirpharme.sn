@@ -143,6 +143,13 @@ class EnregistrementController extends Controller
             ->where('enregistrements.id', $enregistrement->id)
             ->first();
 
+        $labo = User::join('enregistrements', 'enregistrements.user_id', '=', 'users.id')
+        ->join('laboratoires', 'laboratoires.user_id', '=', 'users.id')
+        ->where('enregistrements.id', $enregistrement->id)
+        ->first();
+
+        // dd($labo);
+
         $prod = Produit::where('enreg_id', $enregistrement->id)->first();
 
         $subs = Substance::where('enreg_id', $enregistrement->id)->get();
@@ -162,7 +169,8 @@ class EnregistrementController extends Controller
             'subs' => $subs,
             'motivation' => $motivation,
             'user' => $user,
-            'dossier' => $dossier
+            'dossier' => $dossier,
+            'labo' => $labo
         ]);
 
 

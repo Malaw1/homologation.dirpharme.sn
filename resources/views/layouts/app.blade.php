@@ -67,7 +67,7 @@
                 </ul>
             </div>
         </div>
-        <main class='main-content bgc-grey-100' style='background-image: url("img/background.jpg")'>
+        <main class='main-content bgc-grey-100' style='background-image: url("imdg/background.jpg")'>
             <div id='mainContent'>
                 <div class="row gap-20 masonry pos-r">
                         <div class="masonry-sizer col-md-6"></div>

@@ -60,7 +60,7 @@ class VisiteurController extends Controller
         'lieu_naiss' => $request->input('lieu_naiss')
         ]);
 
-        $structure = $request->input('etablissement');
+        $etab = $request->input('etablissement');
         $diplome = $request->input('diplome');
         $annee = $request->input('annee');
         for($i = 0; $i < count($diplome) ; $i++){

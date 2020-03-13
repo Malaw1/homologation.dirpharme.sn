@@ -245,23 +245,23 @@
                                 <tbody>
                                     <tr>
                                         <th class=" bdwT-0">Nom</th>
-                                        <td>{{ $enreg->name }}</td>
+                                        <td>{{ $labo->name }}</td>
                                     </tr>
                                     <tr>
                                         <th class=" bdwT-0">Adresse</th>
-                                        <td>{{ $enreg->adresse }}</td>
+                                        <td>{{ $labo->adresse }}</td>
                                     </tr>
                                     <tr>
                                         <th class=" bdwT-0">Pays</th>
-                                        <td>{{ $enreg->pays }}</td>
+                                        <td>{{ $labo->pays }}</td>
                                     </tr>
                                     <tr>
                                         <th class=" bdwT-0">Telephone</th>
-                                        <td>{{ $enreg->telephone }}</td>
+                                        <td>{{ $labo->telephone }}</td>
                                     </tr>
                                     <tr>
                                         <th class=" bdwT-0">Email</th>
-                                        <td>{{ $enreg->email }}</td>
+                                        <td>{{ $labo->email }}</td>
                                     </tr>
 
                                 </tbody>
@@ -304,6 +304,46 @@
 
            <!-- Decision -->
            @if(Auth()->user()->poste == 'Responsable DCAM')
+           <div class="row">
+                <div class="col-md-6">
+                    <div class="card text-center">
+                        <div class="card-header">
+                            Paiement
+                        </div>
+                        <div class="card-body">
+                            <form action="" method="post">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                    <label class="form-check-label" for="inlineCheckbox1">Disponible</label>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">Enregistrer</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card text-center">
+                        <div class="card-header">
+                            Echantillon
+                        </div>
+                        <div class="card-body">
+                            <form action="" method="post">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                    <label class="form-check-label" for="inlineCheckbox1">Disponible</label>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">Enregistrer</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <br >
+
             <div class="row">
                 <div class="col-md-6">
                     <div class="card text-center">

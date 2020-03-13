@@ -43,3 +43,11 @@ Route::resource('renouvellement', 'RenouvellementController');
 Route::resource('arrete', 'ArreteController');
 
 Route::resource('visiteurs', 'VisiteurController');
+
+Route::resource('commission', 'CommissionController');
+
+Route::resource('agence', 'AgenceController');
+
+Route::post('paiement', 'PaiementController@paiement');
+
+Route::post('echantillon', 'EchantillonController@echantillon');
