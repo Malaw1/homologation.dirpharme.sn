@@ -89,13 +89,30 @@
               </a>
             </li>
             @elseif(Auth()->user()->role == 'pharmacien')
-            <li class="nav-item">
-              <a class='sidebar-link' href="{{ url('commission') }}">
+            <li class="nav-item dropdown">
+              <a class="dropdown-toggle" href="javascript:void(0);">
                 <span class="icon-holder">
                   <i class="c-red-500 ti-world"></i>
                 </span>
                 <span class="title">Commission</span>
+                <span class="arrow">
+                  <i class="ti-angle-right"></i>
+                </span>
               </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class='sidebar-link' href="{{ url('commission/create') }}">Nouvelle Commission</a>
+                </li>
+                <li>
+                  <a class='sidebar-link' href="#">Maquette</a>
+                </li>
+                <li>
+                  <a class='sidebar-link' href="#">Particiapants</a>
+                </li>
+                <li>
+                  <a class='sidebar-link' href="#">Historique</a>
+                </li>
+              </ul>
             </li>
             <li class="nav-item dropdown">
               <a class="dropdown-toggle" href="javascript:void(0);">
@@ -175,6 +192,14 @@
             </li>
             
               @if(Auth()->user()->poste == 'Responsable DCAM' )
+              <li class="nav-item">
+                <a class='sidebar-link' href="{{ url('echantillons') }}">
+                  <span class="icon-holder">
+                    <i class="c-deep-green-500 ti-package"></i>
+                  </span>
+                  <span class="title">Echantillontheque</span>
+                </a>
+              </li>
               <li class="nav-item">
                 <a class='sidebar-link' href="{{ url('visiteurs') }}">
                   <span class="icon-holder">

@@ -27,7 +27,7 @@ class CommissionController extends Controller
      */
     public function create()
     {
-        //
+        return view('commission.create');
     }
 
     /**

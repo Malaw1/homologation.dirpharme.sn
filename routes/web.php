@@ -51,3 +51,7 @@ Route::resource('agence', 'AgenceController');
 Route::post('paiement', 'PaiementController@paiement');
 
 Route::post('echantillon', 'EchantillonController@echantillon');
+
+Route::resource('courrier', 'CourrierController');
+
+Route::get('deposer', 'CourrierController@deposer');

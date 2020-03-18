@@ -7,115 +7,34 @@
     </div>
 @endif
     <div class="card">
-        <div class="card-header"><h3>Veuillez deposer votre dossier complet ici</h3></div>
+        <div class="card-header"><h3>Creer une nouvelle Commission</h3></div>
         <div class="card-body">
-        <p><small>Note: Veuillez compresser vos documents sous format zip ou rar avant de les uploader svp..!</small></p>
 
-            <form action="{{ route('dossier.store') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('commission.store')}}" method="post" enctype="multipart/form-data">
                 @csrf
-                <div class="row">
-                    <div class="col-md-10">
-                        <div class="custom-file">
-                            <input type="file" required class="custom-file-input form-control" id="customFile" name="modules">
-                            <input type="hidden" value="Module 1" name="label">
-                            <input type="hidden" value="{{ $_GET['id'] }}" name="enreg_id">
-                            <label class="custom-file-label" for="customFile">Module 1</label>
-                        </div>
+                <div class="form-group">
+                    <label for="inputAddress">Type</label>
+                    <select name="type" id="type" class="form-control">
+                        <option value="medicament">Commission du medicament</option>
+                        <option value="visa">Commission Visa</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="inputAddress">Label</label>
+                    <input type="text" class="form-control" id="inputAddress" name="label" required placeholder="">
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail4">Date d'ouverture</label>
+                        <input type="date" class="form-control" id="inputEmail4" name="date_debut" required placeholder="Email">
                     </div>
-                    <div class="col-md-2">
-                        <button type="submit" class="btn btn-primary">Upload</button>
+                    <div class="form-group col-md-6">
+                        <label for="inputPassword4">Date de cloture</label>
+                        <input type="date" class="form-control"  name="date_fin" required placeholder="Numero Telephone">
                     </div>
                 </div>
-            </form>
-            <br>
-
-            <form action="{{ route('dossier.store')}}" method="post" enctype="multipart/form-data">
-                @csrf
-                <div class="row">
-                    <div class="col-md-10">
-                        <div class="custom-file">
-                            <input type="file" required class="custom-file-input form-control" id="customFile" name="modules">
-                            <input type="hidden" value="Module 2" name="label">
-                            <input type="hidden" value="{{ $_GET['id'] }}" name="enreg_id">
-                            <label class="custom-file-label" for="customFile">Module 2</label>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <button type="submit" class="btn btn-primary">Upload</button>
-                    </div>
-                </div>
-            </form>
-            <br>
-
-            <form action="{{ route('dossier.store')}}" method="post" enctype="multipart/form-data">
-                @csrf
-                <div class="row">
-                    <div class="col-md-10">
-                        <div class="custom-file">
-                            <input type="file" required class="custom-file-input form-control" id="customFile" name="modules">
-                            <input type="hidden" value="Module 3" name="label">
-                            <input type="hidden" value="{{ $_GET['id'] }}" name="enreg_id">
-                            <label class="custom-file-label" for="customFile">Module 3</label>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <button type="submit" class="btn btn-primary">Upload</button>
-                    </div>
-                </div>
-            </form>
-            <br>
-
-            <form action="{{ route('dossier.store')}}" method="post" enctype="multipart/form-data">
-                @csrf
-                <div class="row">
-                    <div class="col-md-10">
-                        <div class="custom-file">
-                            <input type="file" required class="custom-file-input form-control" id="customFile" name="modules">
-                            <input type="hidden" value="Module 4" name="label">
-                            <input type="hidden" value="{{ $_GET['id'] }}" name="enreg_id">
-                            <label class="custom-file-label" for="customFile">Module 4</label>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <button type="submit" class="btn btn-primary">Upload</button>
-                    </div>
-                </div>
-            </form>
-            <br>
-
-            <form action="{{ route('dossier.store')}}" method="post" enctype="multipart/form-data">
-                @csrf
-                <div class="row">
-                    <div class="col-md-10">
-                        <div class="custom-file">
-                            <input type="file" required class="custom-file-input form-control" id="customFile" name="modules">
-                            <input type="hidden" value="Module 5" name="label">
-                            <input type="hidden" value="{{ $_GET['id'] }}" name="enreg_id">
-                            <label class="custom-file-label" for="customFile">Module 5</label>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <button type="submit" class="btn btn-primary">Upload</button>
-                    </div>
-                </div>
-            </form>
-
-            <br >
-
-            <form action="{{ route('dossier.store')}}" method="post" enctype="multipart/form-data">
-                @csrf
-                <div class="row">
-                    <div class="col-md-10">
-                        <div class="custom-file">
-                            <input type="file" required class="custom-file-input form-control" id="customFile" name="modules">
-                            <input type="hidden"  name="label" value="Complement de dossier">
-                            <input type="hidden" value="{{ $_GET['id'] }}" name="enreg_id">
-                            <label class="custom-file-label" for="customFile">Complement de dossier (Si necessaire)</label>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <button type="submit" class="btn btn-primary">Upload</button>
-                    </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
                 </div>
             </form>
         </div>

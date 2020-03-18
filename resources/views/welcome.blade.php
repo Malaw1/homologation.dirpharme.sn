@@ -99,7 +99,7 @@
                     <a href="{{ route('login') }}">AMM</a>
                     <a href="#">Pharmacovigilance</a>
                     <a href="#">Base de données </a>
-                    <a href="#">Blog</a>
+                    <a href="{{ url('deposer') }}">Courrier</a>
                     <!-- <a href="#">GitHub</a> -->
                 </div>
             </div>

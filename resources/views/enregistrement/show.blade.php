@@ -311,14 +311,22 @@
                             Paiement
                         </div>
                         <div class="card-body">
-                            <form action="" method="post">
+                            @if($enreg->paiement == NULL)
+                            <form action="{{ url('paiement') }}" method="post">
+                                @csrf
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                    <input class="form-check-input" type="checkbox" name="paiement" value="Payé">
                                     <label class="form-check-label" for="inlineCheckbox1">Disponible</label>
                                 </div>
-
+                                <input type="hidden" name="enreg_id" placeholder="" value="{{$enreg->id }}">
                                 <button type="submit" class="btn btn-primary">Enregistrer</button>
                             </form>
+                            @else
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" checked disable>
+                                    <label class="form-check-label" for="inlineCheckbox1">Payé</label>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -329,13 +337,13 @@
                             Echantillon
                         </div>
                         <div class="card-body">
-                            <form action="" method="post">
+                            <form action="{{ url('echantillon') }}" method="post">
+                            @csrf
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                    <label class="form-check-label" for="inlineCheckbox1">Disponible</label>
+                                    <input class="form-check-input" type="checkbox" checked name="echantillon" value="option1">
+                                    <label class="form-check-label" for="inlineCheckbox1">Pas encore Disponible </label>
                                 </div>
 
-                                <button type="submit" class="btn btn-primary">Enregistrer</button>
                             </form>
                         </div>
                     </div>
