@@ -8,8 +8,7 @@ class Courrier extends Model
 {
     protected $fillable = [
         'numero',
-        'type',
-        'emmeteur',
+        'emmetteur',
         'destinataire',
         'phone',
         'email',

@@ -70,6 +70,11 @@
     </head>
 
     <body class="text-center">
+        @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+        @endif
         <form method="POST" action="{{ route('courrier.store') }}" enctype="multipart/form-data" class="needs-validation form-signin" novalidate="" >
             @csrf
             <img class="mb-4" src="{{ asset('img/logo_msas.png')}}" alt="" width="72" height="72">
@@ -78,13 +83,13 @@
             <input type="text" name="emmetteur" class="form-control" placeholder="Service Emmetteur" required autofocus>
             <br>
             <label for="" class="sr-only">Numero de Telephone</label>
-            <input type="text" name="telephone" class="form-control" placeholder="Numero de Telephone" required>
+            <input type="text" name="phone" class="form-control" placeholder="Numero de Telephone" required>
             <br>
             <label for="inputEmail" class="sr-only">Email address</label>
             <input type="email" name="email" class="form-control" placeholder="Email address" required autofocus>
             <br>
             <label for="inputPassword" class="sr-only">Fichier</label>
-            <input type="file" class="form-control" required>
+            <input type="file" name="fichier" class="form-control" required>
             
             <div class="checkbox mb-3">
                 <label>

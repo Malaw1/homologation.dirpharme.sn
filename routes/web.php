@@ -40,7 +40,7 @@ Route::resource('evaluation', 'EvaluationController');
 
 Route::resource('renouvellement', 'RenouvellementController');
 
-Route::resource('arrete', 'ArreteController');
+Route::resource('arretes', 'ArreteController');
 
 Route::resource('visiteurs', 'VisiteurController');
 
@@ -53,5 +53,10 @@ Route::post('paiement', 'PaiementController@paiement');
 Route::post('echantillon', 'EchantillonController@echantillon');
 
 Route::resource('courrier', 'CourrierController');
-
 Route::get('deposer', 'CourrierController@deposer');
+Route::get('depart', 'CourrierController@depart');
+Route::get('confidentiel', 'CourrierController@confidentiel');
+
+Route::resource('variation', 'VariationController');
+
+Route::get('visiteurs/api/{id}', 'VisiteurController@visiteur');

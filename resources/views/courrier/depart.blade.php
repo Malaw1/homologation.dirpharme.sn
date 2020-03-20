@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="bgc-white bd bdrs-3 p-20 mB-20">
-        <h4 class="c-grey-900 mB-20 float-left">Courriers arrivés</h4>
+        <h4 class="c-grey-900 mB-20 float-left">Courriers envoyés</h4>
         <a href="courrier/create" class="btn btn-primary float-right">Envoyer courrier</a>
         <table id="dataTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead>

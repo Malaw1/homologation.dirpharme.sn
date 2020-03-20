@@ -6,6 +6,9 @@ use App\Courrier;
 use Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
+
+
 class CourrierController extends Controller
 {
     /**
@@ -13,10 +16,14 @@ class CourrierController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $courrier = DB::table('courriers')->get();
+        $courrier = DB::table('courriers')
+        ->where('destinataire', NULL)
+        ->get();
+    
         return view('courrier.index', ['courrier' => $courrier]);
+       
     }
 
     /**
@@ -26,7 +33,7 @@ class CourrierController extends Controller
      */
     public function create()
     {
-        //
+        return view('courrier.create');
     }
 
     /**
@@ -39,6 +46,24 @@ class CourrierController extends Controller
         return view('courrier.deposer');
     }
 
+    public function depart()
+    {
+        $courrier = DB::table('courriers')
+        ->where('emmetteur', NULL)
+        ->get();
+    
+        return view('courrier.depart', ['courrier' => $courrier]);
+    }
+
+    public function confidentiel()
+    {
+        $courrier = DB::table('courriers')
+        ->where('confidentialite', 'on')
+        ->get();
+    
+        return view('courrier.confidentiel', ['courrier' => $courrier]);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -47,24 +72,44 @@ class CourrierController extends Controller
      */
     public function store(Request $request)
     {
-        $numero = '000000';
+        $numero = 1234;
+        $a = date('d');
+        $b = date('m');
+        $c = date('y');
+        $enr = Courrier::All()->last();
+
+        $id = $enr->id+1;
+
+        if($enr == Null){
+            $numero= '0001'.$a.''.$b.''.$c;
+        }elseif($enr->id < 10){
+            $numero= '000'.$id.''.$a.''.$b.''.$c;
+        }elseif($enr->id < 99){
+            $numero= '00'.$id.''.$a.''.$b.''.$c;
+        }elseif($enr->id < 999){
+            $numero= '00'.$id.''.$a.''.$b.''.$c;
+        }else{
+            $numero= $id.''.$a.''.$b.''.$c;
+        }
+
         $filename = Str::random(25);
         $doc = $request->file('fichier');
+        // dd($doc);
         $extension = $doc->extension();
-        dd($extension);
-        $destinationPath = storage_path('/app/public/uploads/courrier/');
+        // dd($extension);
+        $destinationPath = storage_path('/app/public/uploads/courrier');
         $document = 'Courrier-'.$numero.'-'.$filename.'.'.$extension;
         $doc->move($destinationPath, $document);
         $courrier= Courrier::create([
-            'emmeteur' => $request->input('emmetteur'),
+            'emmetteur' => $request->input('emmetteur'),
             'email' => $request->input('email'),
             'phone' => $request->input('phone'),
             'numero' => $numero,
-            'confidentiel' => $request->input('confidentiel'),
+            'confidentialite' => $request->input('confidentialite'),
             'fichier' => $document,
         ]);
 
-        return back()->with('status','Votre courrier est bien enregistré sous le numero'. $numero);
+        return back()->with('status','Votre courrier est bien enregistré sous le numero: '. $numero);
     }
 
     /**
@@ -75,7 +120,12 @@ class CourrierController extends Controller
      */
     public function show(Courrier $courrier)
     {
-        //
+        $filename = $_GET['file'];
+        $path = storage_path('/app/public/uploads/courrier');
+        return Response::make(file_get_contents($path), 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline; filename="'.$filename.'"'
+        ]);
     }
 
     /**

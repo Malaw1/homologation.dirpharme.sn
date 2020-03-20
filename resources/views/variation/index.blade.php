@@ -3,11 +3,11 @@
 @section('content')
 
     <div class="bgc-white bd bdrs-3 p-20 mB-20">
-        <h4 class="c-grey-900 mB-20 float-left">Demandes de Renouvellement d'AMM</h4>
+        <h4 class="c-grey-900 mB-20 float-left">Demandes de Variations d'AMM</h4>
         @if(Auth()->user()->role != 'pharmacien')
         <div class="pull-right text-right">
-            <a href="{{ url('renouvellement/create') }}" class="btn btn-primary">
-                <i  class="ion-plus-circled">Renouveler une AMM</i>
+            <a href="{{ url('variation/create') }}" class="btn btn-primary">
+                <i  class="ion-plus-circled">Nouvelles Variations</i>
             </a>
         </div>
         @endif
@@ -16,10 +16,9 @@
                 <tr>
                     <th>Numero AMM</th>
                     <th>Nom Commercial</th>
-                    <th>Laboratoire Titulaire</th>
                     <th>Status</th>
                     @if(Auth()->user()->role == 'pharmacien')
-                    <th>Action</th>
+                        <th>Action</th>
                     @endif
                 </tr>
             </thead>
@@ -27,7 +26,6 @@
                 <tr>
                     <th>Numero AMM</th>
                     <th>Nom Commercial</th>
-                    <th>Laboratoire Titulaire</th>
                     <th>Status</th>
                     @if(Auth()->user()->role == 'pharmacien')
                     <th>Action</th>
@@ -35,16 +33,13 @@
                 </tr>
             </tfoot>
             <tbody>
-                @foreach($ren as $ren)
+                @foreach($var as $ren)
                 <tr>
-                    <td>{{ $ren->numero_amm }}</td>
+                    <td>{{ $ren->amm }}</td>
                     <td>{{ $ren->produit }}</td>
-                    <td>{{ $ren->name }}</td>
                     <td>{{ $ren->status }}</td>
                     @if(Auth()->user()->role == 'pharmacien')
-                    <td>
-                        <th><a class="btn btn-secondary" href="{{ url('renouvellement/'.$demande->id.'?file='.$demande->fichier) }}" target="_blank" >Consulter</a> </th>
-                    </td>
+                    <td>Action</td>
                     @endif
                 </tr>
                 @endforeach

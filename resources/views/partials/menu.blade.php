@@ -31,7 +31,7 @@
             <li class="nav-item mT-30 actived">
               <a class="sidebar-link" href="{{ url('home') }}">
                 <span class="icon-holder">
-                  <i class="c-blue-500 ti-home"></i>
+                  <i class="c-blue-500 ti-desktop"></i>
                 </span>
                 <span class="title">Acceuil</span>
               </a>
@@ -55,6 +55,14 @@
                 <span class="title">Renouvellement</span>
               </a>
             </li>
+            <li class="nav-item">
+              <a class='sidebar-link' href="{{url('variation')}}">
+                <span class="icon-holder">
+                  <i class="c-red-500 ti-palette"></i>
+                </span>
+                <span class="title">Variation</span>
+              </a>
+            </li>
             @elseif(Auth()->user()->role == 'agence')
             <li class="nav-item">
               <a class='sidebar-link' href="{{url('enregistrement')}}">
@@ -73,6 +81,14 @@
               </a>
             </li>
             <li class="nav-item">
+              <a class='sidebar-link' href="{{url('variation')}}">
+                <span class="icon-holder">
+                  <i class="c-red-500 ti-palette"></i>
+                </span>
+                <span class="title">Variation</span>
+              </a>
+            </li>
+            <li class="nav-item">
               <a class='sidebar-link' href="{{ url('laboratoire') }}">
                 <span class="icon-holder">
                   <i class="c-deep-purple-500 ti-medall-alt"></i>
@@ -85,7 +101,7 @@
                 <span class="icon-holder">
                   <i class="c-yellow-500 ti-id-badge"></i>
                 </span>
-                <span class="title">Visiteurs</span>
+                <span class="title">Visiteurs Medicaux</span>
               </a>
             </li>
             @elseif(Auth()->user()->role == 'pharmacien')
@@ -159,9 +175,9 @@
               </ul>
             </li>
             <li class="nav-item">
-              <a class='sidebar-link' href="#">
+              <a class='sidebar-link' href="{{url('variation')}}">
                 <span class="icon-holder">
-                  <i class="c-red-500 ti-write"></i>
+                  <i class="c-red-500 ti-palette"></i>
                 </span>
                 <span class="title">Variation</span>
               </a>
@@ -191,7 +207,7 @@
               </a>
             </li>
             
-              @if(Auth()->user()->poste == 'Responsable DCAM' )
+              @if(Auth()->user()->poste == 'Responsable DCAM' || Auth()->user()->poste == 'directeur' )
               <li class="nav-item">
                 <a class='sidebar-link' href="{{ url('echantillons') }}">
                   <span class="icon-holder">
@@ -225,6 +241,44 @@
                   <span class="title">Base de donnees</span>
                 </a>
               </li>
+            @elseif(Auth()->user()->role == 'secretariat')
+
+              <li class="nav-item">
+                <a class='sidebar-link' href="{{ url('depart') }}">
+                  <span class="icon-holder">
+                    <i class="c-deep-green-500 ti-files"></i>
+                  </span>
+                  <span class="title">Courriers Depart</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class='sidebar-link' href="{{ url('courrier') }}">
+                  <span class="icon-holder">
+                    <i class="c-deep-yellow-500 ti-email"></i>
+                  </span>
+                  <span class="title">Courriers Arrivés</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class='sidebar-link' href="#">
+                  <span class="icon-holder">
+                    <i class="c-deep-yellow-500 ti-archive"></i>
+                  </span>
+                  <span class="title">Archives</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class='sidebar-link' href="{{ url('confidentiel') }}">
+                  <span class="icon-holder">
+                    <i class="c-deep-yellow-500 ti-lock"></i>
+                  </span>
+                  <span class="title">Confidentiels</span>
+                </a>
+              </li>
+
             @endif
 
 

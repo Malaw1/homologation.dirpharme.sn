@@ -11,14 +11,14 @@
         <div class="card-header" id="headingOne">
             <h5 class="mb-0">
                 <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                Renouvellement d'un AMM
+                Variation d'une AMM
                 </button>
             </h5>
         </div>
 
         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
             <div class="card-body">
-                <form action="{{ route('renouvellement.store')}}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('variation.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                     <div class="form-row">
                         <div class="form-group col">
@@ -42,17 +42,12 @@
 
                         <div class="form-group col">
                             <label>Numero AMM</label>
-                            <input type="text" class="form-control"  name="numero_amm" required >
+                            <input type="text" class="form-control"  name="amm" required >
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>Module 1</label>
-                        <input type="file" class="form-control" name="module_1" required >
-                    </div>
-
-                    <div class="form-group">
-                        <label>Module 2</label>
-                        <input type="file" class="form-control" name="module_2" required >
+                        <label>Fond de dossier</label>
+                        <input type="file" class="form-control" name="dossier" required >
                     </div>
 
                     <div class="form-group">

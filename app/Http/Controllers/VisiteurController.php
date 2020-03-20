@@ -41,14 +41,34 @@ class VisiteurController extends Controller
      */
     public function store(Request $request)
     {
-        $file = Str::random(25);
+        $file = Str::random(20);
         $photo = $request->file('photo');
-        $extension = $photo->extension();
-        $destinationPath = storage_path('/app/public/uploads/visiteurs/'.Auth()->user()->name);
-        $filename = $request->input('prenom').'-'.$request->input('nom').'-'.$file.'.'.$extension;
-        $photo->move($destinationPath, $filename);
+        $cv = $request->file('cv');
+
+        $extension_1 = $photo->extension();
+        $extension_2 = $cv->extension();
+
+        $visiteur = $request->input('prenom').'-'.$request->input('nom').'-'.$file;
+        $filename_1 = $visiteur.'.'.$extension_1;
+        $filename_2 = $visiteur.'.'.$extension_2;
+
+        $destinationPath = storage_path('/app/public/uploads/visiteurs/'.$visiteur);
+        $photo->move($destinationPath, $filename_1);
+        $cv->move($destinationPath, $filename_2);
+
+        $numero = Str::random(15);
+        // Available alpha caracters
+        $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        // generate a pin based on 2 * 7 digits + a random character
+        $pin = mt_rand(1000000, 9999999)
+        . mt_rand(1000000, 9999999)
+        . $characters[rand(0, strlen($characters) - 1)];
+        // shuffle the result
+        $numero = str_shuffle($pin);
+
 
         $visiteur= Visiteur::create([
+        'numero' => $numero,
         'prenom' => $request->input('prenom'),
         'email' => $request->input('email'),
         'telephone' => $request->input('telephone'),
@@ -56,27 +76,16 @@ class VisiteurController extends Controller
         'adresse' => $request->input('adresse'),
         'nom' => $request->input('nom'),
         'date_naiss' => $request->input('date_naiss'),
-        'photo' => $filename,
+        'photo' => $filename_1,
+        'cv' => $filename_2,
         'lieu_naiss' => $request->input('lieu_naiss')
         ]);
 
-        $etab = $request->input('etablissement');
-        $diplome = $request->input('diplome');
-        $annee = $request->input('annee');
-        for($i = 0; $i < count($diplome) ; $i++){
-            $edu =  VEdu::create([
-            'etablissement' => $structure[$i],
-            'diplome' => $diplome[$i],
-            'annee' => $annee[$i],
-            'v_id' => $visiteur->id
-            ]);
-        }
-
-       $code = QrCode::size(700)
-        ->format('png')
-        ->generate('https://www.dirpharme.sn/visiteurs/'.$visiteur->id, public_path('qrcodes/'.$filename.'.png'));
-
-        dd($visiteur, $edu, $code);
+        $image = QrCode::format('png')
+        ->size(500)->errorCorrection('H')
+        ->generate('https://www.dirpharme.sn/visiteurs/api/'.$visiteur->id, public_path('qrcodes/'.$file.'.png'));
+        
+        return back()->with('status', 'Enregistrement Reussi...!');
     }
 
     /**
@@ -87,7 +96,26 @@ class VisiteurController extends Controller
      */
     public function show(Visiteur $visiteur)
     {
-        //
+        // dd($visiteur);
+
+        $visit = Visiteur::join('users', 'users.id', '=', 'visiteurs.agence_id')
+        ->where('visiteurs.id', $visiteur->id)
+        ->first();
+
+        // dd($visit);
+
+        return response()->json([
+            'prenom' => $visiteur->prenom,
+            'nom' => $visiteur->nom,
+            'Agence de Promotion' => $visit->name
+        ]);
+
+        
+    }
+
+    public function visiteur(Visiteur $visiteur){
+
+        return view();
     }
 
     /**

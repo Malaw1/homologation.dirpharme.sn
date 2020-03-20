@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Renouvellement;
 use App\Laboratoire;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class RenouvellementController extends Controller
 {
@@ -50,13 +51,38 @@ class RenouvellementController extends Controller
      */
     public function store(Request $request)
     {
+        $module1Name = Str::random(25);
+        $module2Name = Str::random(25);
+        $paidName = Str::random(25);
+
+        $module_1 = $request->file('module_1');
+        $module_2 = $request->file('module_2');
+        $paiement = $request->file('paiement');
+
+        // dd($module_1);
+
+        $extension_1 = $module_1->extension();
+        $extension_2 = $module_2->extension();
+        $extensionPay = $paiement->extension();
+
+        $destinationPath = storage_path('/app/public/uploads/renouvellement/'.Auth()->user()->id);
+
+        $mod_1 = 'module_1-'.$request->input('numero_amm').'-'.$module1Name.'.'.$extension_1;
+        $mod_2 = 'module_2-'.$request->input('numero_amm').'-'.$module2Name.'.'.$extension_2;
+        $pay = 'paiement-'.$request->input('amm').'-'.$paidName.'.'.$extensionPay;
+
+        $module_1->move($destinationPath, $mod_1);
+        $module_2->move($destinationPath, $mod_2);
+        $paiement->move($destinationPath, $pay);
+
         $renouvellement= Renouvellement::create([
             'user_id' => Auth()->user()->id,
             'produit' => $request->input('produit'),
             'numero_amm' => $request->input('numero_amm'),
             'labo_titulaire' => $request->input('labo_titulaire'),
-            'module_1' => $request->input('module_1'),
-            'module_2' => $request->input('module_2'),
+            'module_1' => $module1Name,
+            'module_2' => $module2Name,
+            'paiement' => $paidName,
             'status' => 'En cours de traitement'
         ]);
 

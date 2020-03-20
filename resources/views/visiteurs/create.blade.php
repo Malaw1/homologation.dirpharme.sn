@@ -56,95 +56,31 @@
                 </fieldset>
 
                 <fieldset>
-                    <legend>Education</legend>
-                    <div class="form-row react">
-                        <div class="col">
-                            <label for="">Etablissement</label>
-                            <input type="text" class="form-control" required placeholder="Universite, Ecole, etc." name="etablissement[]">
-                        </div>
-                        <div class="col">
-                            <label for="">Intutile du diplome</label>
-                            <input type="text" class="form-control" required placeholder="Licence, Master Doctorat, Certification, etc." name="diplome[]">
-                        </div>
-                        <div class="col">
-                            <label for="">Annee d'obtention du diplome</label>
-                            <input type="date" class="form-control" name="annee" id="inputCity">
-                        </div>
-                        <br />
-
-                        <button type="button" class="fcbtn btn btn-success" id='add'>
-                            <i class="">+</i>
-                        </button>
-                        <button type="button" class="fcbtn btn btn-danger" id='remove'>
-                                <i class="">x</i>
-                        </button>
-                    </div>
-                </fieldset>
-                <br>
-                <fieldset>
-                    <legend>Experience Professionnelle</legend>
-                    <div class="form-row experience">
-                        <div class="col">
-                            <label for="">Structure</label>
-                            <input type="text" class="form-control" required placeholder="Entreprise" name="structure[]">
-                        </div>
-                        <div class="col">
-                            <label for="">Periode</label>
-                            <input type="text" class="form-control" required placeholder="jan. 2019 - Mars 2019" name="periode[]">
-                        </div>
-                        <div class="col">
-                            <label for="">Description</label>
-                            <textarea class="form-control" name="description" id="inputCity"></textarea>
-                        </div>
-                        <br />
-
-                        <button type="button" class="fcbtn btn btn-success" id='add'>
-                            <i class="">+</i>
-                        </button>
-                        <button type="button" class="fcbtn btn btn-danger" id='remove'>
-                                <i class="">x</i>
-                        </button>
-                    </div>
-                </fieldset>
-
-                <fieldset>
                     <legend>Photo</legend>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="inputCity">Photo ID</label>
+                            <label for="inputCity">Photo ID (Taille: 35x45)</label>
                             <input type="file" required class="form-control" name="photo" id="inputCity">
                         </div>
                     </div>
                 </fieldset>
+
+                <fieldset>
+                    <legend>Curriculum</legend>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputCity">Uploader le CV</label>
+                            <input type="file" required class="form-control" name="cv" id="inputCity">
+                        </div>
+                    </div>
+                </fieldset>
+
+
                 <br><br>
                 <button type="submit" class="btn btn-primary">Enregistrer</button>
             </form>
         </div>
     </div>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-</div>
-
-<script>
-    function addressFunction()
-    {
-        if (document.getElementById('same').checked)
-        {
-            document.getElementById('manufacturer').disabled = !this.checked;
-            document.getElementById('adresse').disabled = !this.checked;
-            document.getElementById('email').disabled = !this.checked;
-            document.getElementById('phone').disabled = !this.checked;
-
-        }
-
-        else
-        {
-            document.getElementById('manufacturer').disabled = this.checked;
-            document.getElementById('adresse').disabled = this.checked;
-            document.getElementById('email').disabled = this.checked;
-            document.getElementById('phone').disabled = this.checked;
-        }
-    }
-</script>
-
+    <br><br>
 
 @endsection

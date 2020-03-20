@@ -46,24 +46,63 @@
                    </li>
                 </ul>
                 <ul class="nav-right">
-                  <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg">
-                    <i class="ion ion-android-person d-lg-none"></i>
-                    <div class="d-sm-none d-lg-inline-block">Hi, {{ Auth::user()->name }} <i class="fas fa-power-off"></i></div></a>
-                    <div class="dropdown-menu dropdown-menu-right">
-                      <!-- <a href="profile.html" class="dropdown-item has-icon">
-                        <i class="ion ion-android-person"></i> Profile
-                      </a> -->
-                        <a class="dropdown-item has-icon" href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
-                            <i class="ion ion-log-out"></i> Deconnexion
-                        </a>
+                    @if(Auth()->user()->poste == 'directeur')
+                    <li class="nav-item">
+                      <a class='sidebar-link' href="{{ url('depart') }}">
+                        <span class="icon-holder">
+                          <i class="c-deep-green-500 ti-files"></i>
+                        </span>
+                        <span class="title">Courriers Depart</span>
+                      </a>
+                    </li>
 
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                    </div>
-                  </li>
+                    <li class="nav-item">
+                      <a class='sidebar-link' href="{{ url('courrier') }}">
+                        <span class="icon-holder">
+                          <i class="c-deep-yellow-500 ti-email"></i>
+                        </span>
+                        <span class="title">Courriers Arrivés</span>
+                      </a>
+                    </li>
+
+                    <li class="nav-item">
+                      <a class='sidebar-link' href="#">
+                        <span class="icon-holder">
+                          <i class="c-deep-yellow-500 ti-archive"></i>
+                        </span>
+                        <span class="title">Archives</span>
+                      </a>
+                    </li>
+
+                    <li class="nav-item">
+                      <a class='sidebar-link' href="{{ url('confidentiel') }}">
+                        <span class="icon-holder">
+                          <i class="c-deep-yellow-500 ti-lock"></i>
+                        </span>
+                        <span class="title">Confidentiels</span>
+                      </a>
+                    </li>
+
+                    @endif
+                    <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg">
+                        <i class="ion ion-android-person d-lg-none"></i>
+                        <div class="d-sm-none d-lg-inline-block"><i class="fas fa-power-off"></i></div></a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                          <!-- <a href="profile.html" class="dropdown-item has-icon">
+                            <i class="ion ion-android-person"></i> Profile
+                          </a> -->
+                            <a class="dropdown-item has-icon" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                <i class="ion ion-log-out"></i> Deconnexion
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
+                    <li></li>
                 </ul>
             </div>
         </div>

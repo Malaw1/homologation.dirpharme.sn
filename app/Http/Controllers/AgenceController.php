@@ -10,7 +10,7 @@ class AgenceController extends Controller
 {
     public function index()
     {
-        $agence = DB::table('Users')->where('role', 'agence')->get();
+        $agence = DB::table('users')->where('role', 'agence')->get();
         return view('agence.index', ['agence' => $agence]);
     }
 }
